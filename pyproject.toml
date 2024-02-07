@@ -10,6 +10,8 @@ python = "^3.10"
 mysqlclient = "^2.2.3"
 django = "^5.0.1"
 djangorestframework = "^3.14.0"
+pyjwt = "^2.8.0"
+django-environ = "^0.11.2"
 
 
 [build-system]

@@ -1,5 +1,5 @@
-#custom secret
-secrets.py
+#environ
+.env
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
