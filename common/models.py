@@ -4,8 +4,8 @@ class CommonModel(models.Model):
     """
     Common Model Definition
     """
-    created_at = models.DateTimeField(auto_now_add=True) #최초 생성시에 현재시가 입력되고 불변
-    updated_at = models.DateTimeField(auto_now=True) #저장할 때마다 현재시로 업데이트 됨
+    created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True) #최초 생성시에 현재시가 입력되고 불변
+    updated_at = models.DateTimeField(auto_now=True, null=True, blank=True) #저장할 때마다 현재시로 업데이트 됨
 
     class Meta:
         abstract = True 

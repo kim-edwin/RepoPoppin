@@ -1,3 +1,24 @@
 from django.contrib import admin
+from .models import Store
 
-# Register your models here.
+@admin.register(Store)
+class StoreAdmin(admin.ModelAdmin):
+    list_display = (
+        "name",
+        "price",
+        "description",
+        "address",
+        "is_visible",
+    )
+
+    list_filter = (
+        "is_visible",
+    )
+
+    # def total_amenities(self, room):
+    #     return room.amenities.count()
+
+    search_fields = (
+        "name",
+        "is_visible",
+    )

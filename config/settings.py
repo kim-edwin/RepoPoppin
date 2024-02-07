@@ -33,7 +33,10 @@ ALLOWED_HOSTS = []
 
 CUSTOM_APPS = [
     'common.apps.CommonConfig',
+    'users.apps.UsersConfig',
     'stores.apps.StoresConfig',
+    'reviews.apps.ReviewsConfig',
+    'wishlists.apps.WishlistsConfig',
 ]
 
 SYSTEM_APPS = [
@@ -97,6 +100,8 @@ DATABASES = DATABASES_SECRET
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
+AUTH_USER_MODEL = 'users.User'
+
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -134,3 +139,5 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+PAGE_SIZE = 10
