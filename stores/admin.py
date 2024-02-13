@@ -5,9 +5,9 @@ from .models import Store
 class StoreAdmin(admin.ModelAdmin):
     list_display = (
         "name",
-        "price",
-        "description",
-        "address",
+        "hash_tags",
+        "rating",
+        "poi_address",
         "is_visible",
     )
 

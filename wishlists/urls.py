@@ -4,5 +4,5 @@ from .views import Wishlists, WishlistDetail, WishlistToggle
 urlpatterns = [
     path("", Wishlists.as_view()),
     path("<int:pk>", WishlistDetail.as_view()),
-    path("<int:pk>/rooms/<int:room_pk>", WishlistToggle.as_view()),
+    path("<int:pk>/stores/<int:store_pk>", WishlistToggle.as_view()),
 ]

@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
-from .secrets import DATABASES_SECRET, TOKEN_SECRET
+from config.secrets import SECRET_DB, SECRET_KEY
 import os
 import environ
 
@@ -27,7 +27,7 @@ environ.Env.read_env(os.path.join(BASE_DIR, ".env"))
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env("SECRET_KEY")
+SECRET_KEY = SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -57,6 +57,7 @@ SYSTEM_APPS = [
 THIRD_PARTY_APPS = [
     "rest_framework",
     "rest_framework.authtoken",
+    "corsheaders",
 ]
 
 INSTALLED_APPS = CUSTOM_APPS + SYSTEM_APPS + THIRD_PARTY_APPS
@@ -69,6 +70,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
+
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -95,7 +98,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = env("SECRET_DATABASE")
+DATABASES = SECRET_DB
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.sqlite3',
@@ -154,3 +157,5 @@ REST_FRAMEWORK = {
         "config.authentication.JWTAuthentication",
     ]
 }
+
+CORS_ALLOWED_ORIGINS = ["http://localhost:3000"]
