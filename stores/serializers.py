@@ -18,12 +18,25 @@ class StoreDetailSerializer(ModelSerializer):
     
 class StoreListSerializer(ModelSerializer):
     rating = serializers.SerializerMethodField()
+    status = serializers.SerializerMethodField()
 
     class Meta:
         model = Store
-        fields = "__all__"
+        fields = (
+            "p_name",
+            "p_startdate",
+            "p_enddate",
+            "img_url",
+            "p_location",
+            "p_hashtag",
+            "rating",
+            "status",
+        )
         #depth = 1
     
-    def get_rating(self, room):
-        return room.rating()
+    def get_rating(self, store):
+        return store.rating()
+    
+    def get_status(self, store):
+        return store.status()
     

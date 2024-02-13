@@ -14,17 +14,21 @@ class Store(CommonModel):
         ('COMPLETED', '종료'),
     )
 
-    name = models.CharField(max_length=180, default="")
-    start_date = models.DateField(null=True, blank=True)
-    end_date = models.DateField(null=True, blank=True)
-    img_url = models.URLField(default="")
-    article_url = models.URLField(default="")
-    poi_address = models.CharField(max_length=100, default="")
-    hash_tags = models.CharField(max_length=300, default="")
+    news_id = models.CharField(max_length = 50, default="", null=True, blank=True)
+    news_keyword = models.TextField(null=True, blank=True)
+    news_feature = models.TextField(null=True, blank=True)
+    p_name = models.CharField(max_length=180, default="", null=True, blank=True)
+    p_startdate = models.DateField(null=True, blank=True)
+    p_enddate = models.DateField(null=True, blank=True)
+    img_url = models.URLField(default="", null=True, blank=True)
+    news_url = models.URLField(default="")
+    p_location = models.CharField(max_length=100, default="", null=True, blank=True)
+    p_hashtag = models.CharField(max_length=300, default="", null=True, blank=True)
+    p_chucheon = models.TextField(null=True, blank=True,)
     is_visible = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.name
+        return self.p_name
     
     def total_amenities(self):
         return self.amenities.count()
@@ -40,18 +44,18 @@ class Store(CommonModel):
             return round(total_rating / count, 2)
     
     def save(self, *args, **kwargs): #startdate, enddate 정보가 없으면 default 값으로 오늘부터 일주일로 함
-        if not self.start_date:
-            self.start_date = timezone.now().date()
-        if not self.end_date:
-            self.end_date = timezone.now().date() + timezone.timedelta(days=30)
+        if not self.p_startdate:
+            self.p_startdate = timezone.now().date()
+        if not self.p_enddate:
+            self.p_enddate = timezone.now().date() + timezone.timedelta(days=30)
         super().save(*args, **kwargs)
 
     def status(self):
             today = timezone.now().date()
-            if today < self.start_date:
-                remaining_days = (self.start_date - today).days
+            if today < self.p_startdate:
+                remaining_days = (self.p_startdate - today).days
                 return f'준비중 D-{remaining_days}'
-            elif self.start_date <= today <= self.end_date:
+            elif self.p_startdate <= today <= self.p_enddate:
                 return '진행중'
             else:
                 return '종료'

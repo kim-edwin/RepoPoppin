@@ -4,14 +4,13 @@ from .models import Store
 @admin.register(Store)
 class StoreAdmin(admin.ModelAdmin):
     list_display = (
-        "status",
-        "name",
-        "start_date",
-        "end_date",
-        "img_url",
-        "hash_tags",
-        "poi_address",
-        "is_visible",
+"p_name",
+"p_startdate",
+"p_enddate",
+"img_url",
+"p_location",
+"p_hashtag",
+"is_visible",
     )
 
     list_filter = (
