@@ -14,9 +14,9 @@ class Stores(APIView):
     #Get은 권한없이 가능하고, 나머지 메소드들은 authentification이 필요하다.
 
     def get(self, request):
-        all_stores = Store.objects.all()
+        visible_stores = Store.objects.filter(is_visible=True)
         serializer = StoreListSerializer(
-            all_stores, 
+            visible_stores, 
             many=True,
             context={"request": request},)
         return Response(serializer.data)

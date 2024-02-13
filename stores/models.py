@@ -15,7 +15,7 @@ class Store(CommonModel):
     article_url = models.URLField(default="")
     poi_address = models.CharField(max_length=100, default="")
     hash_tags = models.CharField(max_length=300, default="")
-    is_visible = models.BooleanField(default=True)
+    is_visible = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name
