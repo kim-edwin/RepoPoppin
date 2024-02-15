@@ -11,23 +11,26 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
-from config.secrets import SECRET_DB, SECRET_KEY, GH_SECRET
 import os
+import json
 import environ
 
 env = environ.Env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+# BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+environ.Env.read_env(
+    env_file=os.path.join(BASE_DIR, '.env')
+)
 
-environ.Env.read_env(os.path.join(BASE_DIR, ".env"))
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = SECRET_KEY
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -98,7 +101,15 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = SECRET_DB
+# Django의 DATABASES 설정에 할당
+DATABASES = {'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME':  'mydata2',
+        'USER':  'encore',
+        'PASSWORD' : env('SECRET_PW'),
+        'HOST' : '52.78.92.36',
+        'PORT':  '3306'                      
+        }}
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.sqlite3',
@@ -164,4 +175,4 @@ CORS_ALLOWED_ORIGINS = ["http://127.0.0.1:3000"]
 CSRF_TRUSTED_ORIGINS = ["http://127.0.0.1:3000"]
 CORS_ALLOW_CREDENTIALS = True
 
-GH_SECRET = GH_SECRET
+GH_SECRET = env('GH_SECRET')
