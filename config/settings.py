@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
-from config.secrets import SECRET_DB, SECRET_KEY
+from config.secrets import SECRET_DB, SECRET_KEY, GH_SECRET
 import os
 import environ
 
@@ -32,7 +32,7 @@ SECRET_KEY = SECRET_KEY
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["13.209.106.73"]
+ALLOWED_HOSTS = ["127.0.0.1", "13.209.106.73"]
 
 
 # Application definition
@@ -155,6 +155,7 @@ PAGE_SIZE = 10
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
         "rest_framework.authentication.SessionAuthentication",
+        "rest_framework.authentication.TokenAuthentication",
         "config.authentication.JWTAuthentication",
     ]
 }
@@ -162,3 +163,5 @@ REST_FRAMEWORK = {
 CORS_ALLOWED_ORIGINS = ["http://127.0.0.1:3000"]
 CSRF_TRUSTED_ORIGINS = ["http://127.0.0.1:3000"]
 CORS_ALLOW_CREDENTIALS = True
+
+GH_SECRET = GH_SECRET
