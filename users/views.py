@@ -145,6 +145,7 @@ class GithubLogIn(APIView):
                 },
             )
             user_data = user_data.json()
+            print(f"==================={user_data}")
             user_emails = requests.get(
                 "https://api.github.com/user/emails",
                 headers={
@@ -153,15 +154,16 @@ class GithubLogIn(APIView):
                 },
             )
             user_emails = user_emails.json()
+            print(f"{user_emails}")
             try:
                 user = User.objects.get(email=user_emails[0]["email"])
                 login(request, user)
                 return Response(status=status.HTTP_200_OK)
             except User.DoesNotExist:
                 user = User.objects.create(
-                    username=user_data.get("login"),
+                    username=user_data.get("login")+"_"+str(user_data.get("id")),
                     email=user_emails[0]["email"],
-                    name=user_data.get("name"),
+                    name = user_data.get("name") if user_data.get("name") else "No Name",
                     avatar=user_data.get("avatar_url"),
                 )
                 user.set_unusable_password()
