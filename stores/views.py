@@ -14,7 +14,15 @@ class Stores(APIView):
     #Get은 권한없이 가능하고, 나머지 메소드들은 authentification이 필요하다.
 
     def get(self, request):
-        visible_stores = Store.objects.filter(is_visible=True)
+        try:
+            page = request.query_params.get("page", 1)
+            page = int(page)
+        except ValueError:
+            page = 1
+        page_size = settings.PAGE_SIZE
+        start = (page - 1) * page_size
+        end = start + page_size
+        visible_stores = Store.objects.filter(is_visible=True).order_by('-p_startdate')[start:end]
         serializer = StoreListSerializer(
             visible_stores, 
             many=True,
