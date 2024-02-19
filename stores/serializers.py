@@ -10,7 +10,19 @@ class StoreDetailSerializer(ModelSerializer):
 
     class Meta:
         model = Store
-        fields = "__all__"
+        fields = (
+            "id",
+            "pk",
+            "p_name",
+            "p_startdate",
+            "p_enddate",
+            "img_url",
+            "p_location",
+            "p_hashtag",
+            "rating",
+            "status",
+            "thumbnail",
+        )
         #depth = 1
 
     def get_rating(self, store): #get_필드이름으로 고정시켜야한다. #두번째 인자는 모델이름이 된다.

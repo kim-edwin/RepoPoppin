@@ -16,7 +16,7 @@ class Store(CommonModel):
 
     news_id = models.CharField(max_length = 50, default="", null=True, blank=True)
     news_keyword = models.TextField(null=True, blank=True)
-    news_feature = models.TextField(null=True, blank=True)
+    news_feature = models.TextField(null=True, blank=True)          
     p_name = models.CharField(max_length=180, default="", null=True, blank=True)
     p_startdate = models.DateField(null=True, blank=True)
     p_enddate = models.DateField(null=True, blank=True)
