@@ -36,6 +36,7 @@ class StoreListSerializer(ModelSerializer):
             "p_hashtag",
             "rating",
             "status",
+            "thumbnail",
         )
         #depth = 1
     

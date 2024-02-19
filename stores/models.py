@@ -59,3 +59,14 @@ class Store(CommonModel):
                 return '진행중'
             else:
                 return '종료'
+    
+    def thumbnail(self):
+        if self.img_url:
+            # 이미지 URL을 콤마로 분할하여 리스트로 만듭니다.
+            img_urls = self.img_url.split(',')
+            # 첫 번째 이미지 URL을 가져옵니다.
+            first_img_url = img_urls[0].strip()
+            return first_img_url
+        else:
+            return None
+
