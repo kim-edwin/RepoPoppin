@@ -162,6 +162,7 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 PAGE_SIZE = 9
+REVIEW_SIZE = 10
 
 # APPEND_SLASH = False
 

@@ -13,10 +13,7 @@ class Store(CommonModel):
         ('IN_PROGRESS', '진행중'),
         ('COMPLETED', '종료'),
     )
-
-    news_id = models.CharField(max_length = 50, default="", null=True, blank=True)
-    news_keyword = models.TextField(null=True, blank=True)
-    news_feature = models.TextField(null=True, blank=True)          
+    
     p_name = models.CharField(max_length=180, default="", null=True, blank=True)
     p_startdate = models.DateField(null=True, blank=True)
     p_enddate = models.DateField(null=True, blank=True)
@@ -25,6 +22,8 @@ class Store(CommonModel):
     p_location = models.CharField(max_length=100, default="", null=True, blank=True)
     p_hashtag = models.CharField(max_length=300, default="", null=True, blank=True)
     p_chucheon = models.TextField(null=True, blank=True,)
+    frontLat = models.FloatField(null=True, blank=True, default="37.486660")
+    frontLon = models.FloatField(null=True, blank=True, default="127.021762")
     is_visible = models.BooleanField(default=False)
 
     def __str__(self):

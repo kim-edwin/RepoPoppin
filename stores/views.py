@@ -64,13 +64,13 @@ class StoreReviews(APIView):
         except ValueError:
             page = 1 #잘못 가져오면 그냥 1페이지 가져오기
 
-        page_size = settings.PAGE_SIZE
-        start = (page - 1) * page_size
-        end = start + page_size
+        review_size = settings.REVIEW_SIZE
+        start = (page - 1) * review_size
+        end = start + review_size
 
         store = self.get_object(pk)
         serializer = ReviewSerializer(
-            store.reviews.all()[start:end], #인덱싱이 된다. 이것이 Pagination. 장고는 전체를 가져오지 않고 필요한것만 부른다. QuerySet이라서..
+            store.reviews.all().order_by('-created_at')[start:end], #인덱싱이 된다. 이것이 Pagination. 장고는 전체를 가져오지 않고 필요한것만 부른다. QuerySet이라서..
             many=True,
         )
         return Response(serializer.data)
