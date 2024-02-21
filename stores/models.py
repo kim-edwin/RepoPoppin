@@ -68,4 +68,10 @@ class Store(CommonModel):
             return first_img_url
         else:
             return None
+    
+    def is_liked(self, user):
+        if user.is_authenticated:
+            return self.wishlists.filter(user=user).exists()
+        else:
+            return False
 

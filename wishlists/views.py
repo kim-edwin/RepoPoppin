@@ -32,6 +32,19 @@ class Wishlists(APIView):
             return Response(serializer.data)
         else:
             return Response(serializer.errors)
+        
+class LikedWishlists(APIView):
+
+    permission_classes = [IsAuthenticated] #조회(Get)도 인증되어야함
+
+    def get(self, request):
+        all_wishlists = Wishlist.objects.filter(user=request.user)
+        serializer = WishlistSerializer(
+            all_wishlists, 
+            many=True,
+            context={"request":request},
+            )
+        return Response(serializer.data)
 
 class WishlistDetail(APIView):
 
@@ -68,6 +81,8 @@ class WishlistDetail(APIView):
             return Response(serializer.errors)
 
 class WishlistToggle(APIView):
+
+    permission_classes = [IsAuthenticated]
 
     def get_list(self, pk, user):
         try:

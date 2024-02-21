@@ -9,7 +9,7 @@ class Wishlist(CommonModel):
 
     name = models.CharField(max_length=150)
     stores = models.ManyToManyField("stores.Store",
-                                    related_name="wishlists",)
+                                    related_name="wishlists", blank=True,)
     user = models.ForeignKey("users.User", 
                             on_delete=models.CASCADE,
                             related_name="wishlists",)
