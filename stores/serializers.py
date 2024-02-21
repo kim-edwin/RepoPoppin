@@ -72,3 +72,11 @@ class StoreListSerializer(ModelSerializer):
         user = self.context['request'].user
         return store.is_liked(user)
     
+class TinyStoreSerializer(ModelSerializer):
+    class Meta:
+        model = Store
+        fields = (
+            "id",
+            "pk",
+            "p_name",
+            )

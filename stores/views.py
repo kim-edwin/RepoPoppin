@@ -1,8 +1,10 @@
 from django.conf import settings
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
 from rest_framework.exceptions import NotFound, NotAuthenticated, ParseError, PermissionDenied
+
+from reports.serializers import ReportSerializer
 from .models import Store
 from .serializers import StoreListSerializer, StoreDetailSerializer
 from reviews.serializers import ReviewSerializer
@@ -85,4 +87,27 @@ class StoreReviews(APIView):
                 store=self.get_object(pk)
             )
             serializer = ReviewSerializer(review)
+            return Response(serializer.data)
+        
+
+class StoreReports(APIView):
+
+    permission_classes = [IsAuthenticated]
+
+    def get_object(self, pk):
+        try:
+            return Store.objects.get(pk=pk)
+        except Store.DoesNotExist:
+            raise NotFound
+        
+    def post(self, request, pk):
+        serializer = ReportSerializer(
+            data=request.data
+        )
+        if serializer.is_valid():
+            report = serializer.save(
+                user=request.user,
+                store=self.get_object(pk)
+            )
+            serializer = ReportSerializer(report)
             return Response(serializer.data)

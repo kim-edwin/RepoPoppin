@@ -5,4 +5,5 @@ urlpatterns = [
     path("", views.Stores.as_view()),
     path("<int:pk>", views.StoreDetail.as_view()),
     path("<int:pk>/reviews", views.StoreReviews.as_view()),
+    path("<int:pk>/reports", views.StoreReports.as_view()),
 ]
