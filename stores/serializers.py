@@ -18,6 +18,7 @@ class StoreDetailSerializer(ModelSerializer):
             "p_startdate",
             "p_enddate",
             "img_url",
+            "news_url",
             "p_location",
             "p_hashtag",
             "rating",
