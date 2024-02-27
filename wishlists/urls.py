@@ -5,5 +5,5 @@ urlpatterns = [
     # path("", Wishlists.as_view()),
     path("", WishlistDetail.as_view()),
     # path("<int:pk>", WishlistDetail.as_view()),
-    path("<int:pk>/stores/<int:store_pk>", WishlistToggle.as_view()),
+    path("stores/<int:store_pk>", WishlistToggle.as_view()),
 ]

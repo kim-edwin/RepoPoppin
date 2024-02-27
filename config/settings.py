@@ -47,6 +47,7 @@ CUSTOM_APPS = [
     'reviews.apps.ReviewsConfig',
     'wishlists.apps.WishlistsConfig',
     'reports.apps.ReportsConfig',
+    'StoreAccessLog.apps.StoreaccesslogConfig'
 ]
 
 SYSTEM_APPS = [

@@ -8,6 +8,8 @@ from rest_framework.views import APIView
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.exceptions import ParseError, NotFound
+
+from wishlists.models import Wishlist
 from .serializers import PrivateUserSerializer
 from .models import User
 
@@ -173,6 +175,7 @@ class GithubLogIn(APIView):
                 )
                 user.set_unusable_password()
                 user.save()
+                Wishlist.objects.create(user=user)
                 login(request, user)
                 return Response(status=status.HTTP_200_OK)
         except Exception:
@@ -219,6 +222,7 @@ class KakaoLogIn(APIView):
                 )
                 user.set_unusable_password()
                 user.save()
+                Wishlist.objects.create(user=user)
                 login(request, user)
                 return Response(status=status.HTTP_200_OK)
         except Exception:
@@ -257,6 +261,7 @@ class SignUp(APIView):
             )
             user.set_password(password)
             user.save()
+            Wishlist.objects.create(user=user)
             login(request, user)
             return Response(
                 {

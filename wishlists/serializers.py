@@ -14,6 +14,5 @@ class WishlistSerializer(ModelSerializer):
         model = Wishlist
         fields = (
             "pk",
-            "name",
             "stores",
         )

@@ -72,9 +72,9 @@ class WishlistToggle(APIView):
 
     permission_classes = [IsAuthenticated]
 
-    def get_list(self, pk, user):
+    def get_list(self, user):
         try:
-            return Wishlist.objects.get(pk=pk, user=user)
+            return Wishlist.objects.get(user=user)
         except Wishlist.DoesNotExist:
             raise NotFound
         
@@ -84,8 +84,8 @@ class WishlistToggle(APIView):
         except Store.DoesNotExist:
             raise NotFound
 
-    def put(self, request, pk, store_pk):
-        wishlist = self.get_list(pk, request.user)
+    def put(self, request, store_pk):
+        wishlist = self.get_list(request.user)
         store = self.get_store(store_pk)
         if wishlist.stores.filter(pk=store.pk).exists():
             wishlist.stores.remove(store) 
