@@ -24,7 +24,8 @@ class Store(CommonModel):
     p_chucheon = models.TextField(null=True, blank=True,)
     frontLat = models.FloatField(null=True, blank=True, default="37.486660")
     frontLon = models.FloatField(null=True, blank=True, default="127.021762")
-    is_visible = models.BooleanField(default=False)
+    p_category = models.IntegerField(null=True, blank=True, default="99")
+    is_visible = models.BooleanField(default=True)
 
     def __str__(self):
         return self.p_name
