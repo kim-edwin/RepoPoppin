@@ -14,6 +14,7 @@ from pathlib import Path
 import os
 import json
 import environ
+import dj_database_url
 
 env = environ.Env()
 
@@ -33,7 +34,7 @@ environ.Env.read_env(
 SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["127.0.0.1", "13.209.106.73"]
 
@@ -69,6 +70,7 @@ INSTALLED_APPS = CUSTOM_APPS + SYSTEM_APPS + THIRD_PARTY_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -104,14 +106,22 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 # Django의 DATABASES 설정에 할당
-DATABASES = {'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME':  'mydata2',
-        'USER':  'encore',
-        'PASSWORD' : env('SECRET_PW'),
-        'HOST' : '52.78.92.36',
-        'PORT':  '3306'                      
-        }}
+if DEBUG:
+    DATABASES = {'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME':  'mydata2',
+            'USER':  'encore',
+            'PASSWORD' : env('SECRET_PW'),
+            'HOST' : '52.78.92.36',
+            'PORT':  '3306'                      
+            }}
+else:
+    DATABASES = {
+        "default": dj_database_url.config(
+            conn_max_age=600,
+        )
+    }
+
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.sqlite3',
@@ -156,7 +166,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+
+if not DEBUG:
+    STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+    STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
