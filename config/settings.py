@@ -36,7 +36,7 @@ SECRET_KEY = env('SECRET_KEY_DJANGO')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["127.0.0.1", "13.209.106.73", "112.220.17.226"]
+ALLOWED_HOSTS = ["127.0.0.1", "13.209.106.73", "https://mysite-wfiz.onrender.com"]
 
 
 # Application definition
@@ -106,21 +106,21 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 # Django의 DATABASES 설정에 할당
-if DEBUG:
-    DATABASES = {'default': {
-            'ENGINE': 'django.db.backends.mysql',
-            'NAME':  'mydata2',
-            'USER':  'encore',
-            'PASSWORD' : env('SECRET_PW'),
-            'HOST' : '52.78.92.36',
-            'PORT':  '3306'                      
-            }}
-else:
-    DATABASES = {
-        "default": dj_database_url.config(
-            conn_max_age=600,
-        )
-    }
+# if DEBUG:
+#     DATABASES = {'default': {
+#             'ENGINE': 'django.db.backends.mysql',
+#             'NAME':  'mydata2',
+#             'USER':  'encore',
+#             'PASSWORD' : env('SECRET_PW'),
+#             'HOST' : '52.78.92.36',
+#             'PORT':  '3306'                      
+#             }}
+# else:
+#     DATABASES = {
+#         "default": dj_database_url.config(
+#             conn_max_age=600,
+#         )
+#     }
 
 # DATABASES = {
 #     'default': {
@@ -129,6 +129,14 @@ else:
 #     }
 # }
 
+DATABASES = {'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME':  'mydata2',
+        'USER':  'encore',
+        'PASSWORD' : env('SECRET_PW'),
+        'HOST' : '52.78.92.36',
+        'PORT':  '3306'                      
+        }}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
