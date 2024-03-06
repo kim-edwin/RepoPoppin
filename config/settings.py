@@ -104,22 +104,30 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-
-if DEBUG:
-    DATABASES = {'default': {
-            'ENGINE': 'django.db.backends.mysql',
-            'NAME':  'mydata2',
-            'USER':  'encore',
-            'PASSWORD' : env('SECRET_PW'),
-            'HOST' : '52.78.92.36',
-            'PORT':  '3306'                      
+DATABASES = {'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME':  'mydata2',
+        'USER':  'encore',
+        'PASSWORD' : env('SECRET_PW'),
+        'HOST' : '52.78.92.36',
+        'PORT':  '3306'                      
             }}
-else:
-    DATABASES = {
-        "default": dj_database_url.config(
-            conn_max_age=600,
-        )
-    }
+
+# if DEBUG:
+#     DATABASES = {'default': {
+#             'ENGINE': 'django.db.backends.mysql',
+#             'NAME':  'mydata2',
+#             'USER':  'encore',
+#             'PASSWORD' : env('SECRET_PW'),
+#             'HOST' : '52.78.92.36',
+#             'PORT':  '3306'                      
+#             }}
+# else:
+#     DATABASES = {
+#         "default": dj_database_url.config(
+#             conn_max_age=600,
+#         )
+#     }
 
 # DATABASES = {
 #     'default': {
