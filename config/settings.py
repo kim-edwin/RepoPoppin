@@ -36,7 +36,7 @@ SECRET_KEY = env('SECRET_KEY_DJANGO')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["localhost", "mysite-wfiz.onrender.com", "backend.pop.pin.com",]
+ALLOWED_HOSTS = ["localhost", "mysite-wfiz.onrender.com", "backend.pop-pin.store",]
 
 
 # Application definition
@@ -210,8 +210,8 @@ if DEBUG:
     CORS_ALLOWED_ORIGINS = ["http://127.0.0.1:3000"]
     CSRF_TRUSTED_ORIGINS = ["http://127.0.0.1:3000"]
 else:
-    CORS_ALLOWED_ORIGINS = ["https://pop-pin.store","https://backend.pop-pin.store"]
-    CSRF_TRUSTED_ORIGINS = ["https://pop-pin.store","https://backend.pop-pin.store"]
+    CORS_ALLOWED_ORIGINS = ["https://pop-pin.store"]
+    CSRF_TRUSTED_ORIGINS = ["https://pop-pin.store"]
 CORS_ALLOW_CREDENTIALS = True
 
 if not DEBUG:
