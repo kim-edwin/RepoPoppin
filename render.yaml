@@ -6,7 +6,7 @@ databases:
 
 services:
   - type: web
-    plan: free
+    plan: starter
     name: poppin
     runtime: python
     buildCommand: "./build.sh"
