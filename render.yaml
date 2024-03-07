@@ -3,7 +3,7 @@ services:
       plan: Pro
       name: mysite
       runtime: python
-      region: Singapore
+      region: singapore
       buildCommand: "./build.sh"
       startCommand: "python -m gunicorn config.asgi:application -k uvicorn.workers.UvicornWorker"
       envVars:
