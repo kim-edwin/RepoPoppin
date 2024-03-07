@@ -184,6 +184,7 @@ class KakaoLogIn(APIView):
     def post(self, request):
         try:
             code = request.data.get("code")
+            print(f"kakao_access_token: {code}")
             access_token = requests.post(
                 "https://kauth.kakao.com/oauth/token", 
                 headers={
