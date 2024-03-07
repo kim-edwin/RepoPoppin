@@ -152,7 +152,6 @@ class GithubLogIn(APIView):
                 },
             )
             user_data = user_data.json()
-            print(f"==================={user_data}")
             user_emails = requests.get(
                 "https://api.github.com/user/emails",
                 headers={
@@ -161,7 +160,6 @@ class GithubLogIn(APIView):
                 },
             )
             user_emails = user_emails.json()
-            print(f"{user_emails}")
             try:
                 user = User.objects.get(email=user_emails[0]["email"])
                 login(request, user)
@@ -194,11 +192,12 @@ class KakaoLogIn(APIView):
                 data={
                     "grant_type": "authorization_code",
                     "client_id" : "d166f87c9d3f4176d1b79841064ba8d4",
-                    "redirect_uri" : "http://127.0.0.1:3000/social/kakao",
+                    "redirect_uri" : "https://pop-pin.store/social/kakao",
                     "code": code,
                 },
             )
             access_token =  access_token.json().get("access_token");
+            print(f"kakao_access_token: {access_token}")
             user_data = requests.get(
                     "https://kapi.kakao.com/v2/user/me",
                     headers={
