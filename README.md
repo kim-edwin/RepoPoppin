@@ -105,12 +105,12 @@ URL 공유
 
 ## 2. 요구사항 정의
   ### 시나리오
-<details><summary>시나리오</summary>
+<details><summary>시나리오</summary><br>
 
 :raising_hand:**우리 서비스를 이용할 유저들**
 ```
-연인과의 데이트 또는 친구들과 시간을 보낼 곳을 찾는 유저
-모바일 접속 유저
+1. 연인과의 데이트 또는 친구들과 시간을 보낼 곳을 찾는 유저
+2. 모바일 접속 유저
 ```
 1) 장소와 시간이 결정되지 않은 유저 → :bulb:**현재 오픈 중인 팝업스토어를 탐색할 수 있는 기능** 필요
   → 카테고리제이션을 통한 목록 탐색,  현재 실시간 인기 많은 팝업스토어 노출, 가장 최신 팝업스토어 노출
@@ -130,7 +130,7 @@ URL 공유
 </details>
 
   ### 요구사항 정의서
-<details><summary>요구사항 정의서</summary>
+<details><summary>요구사항 정의서</summary><br>
 
 요구사항 정의서 [바로가기](https://repeated-sidewalk-fe0.notion.site/bad6778516b340408f10a3f7def106a8)
 
@@ -138,24 +138,43 @@ URL 공유
 
 ## 3. 개발
   ### 기술스택
-<details><summary>기술스택</summary>
+<details><summary>기술스택</summary><br>
 
-기술스택
+**Environment**<br>
+<img src="https://img.shields.io/badge/visualstudiocode-007ACC?style=for-the-badge&logo=visualstudiocode&logoColor=white">
+<img src="https://img.shields.io/badge/amazonec2-FF9900?style=for-the-badge&logo=amazonec2&logoColor=white">
+<img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">
+<img src="https://img.shields.io/badge/notion-000000?style=for-the-badge&logo=notion&logoColor=white">
+
+
+**Development**<br>
+<img src="https://img.shields.io/badge/python-3776AB?style=for-the-badge&logo=python&logoColor=white"> 
+<img src="https://img.shields.io/badge/django-092E20?style=for-the-badge&logo=django&logoColor=white">
+<img src="https://img.shields.io/badge/apacheairflow-017CEE?style=for-the-badge&logo=apacheairflow&logoColor=white">
+<img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=white">
+
+**DBMS**<br>
+<img src="https://img.shields.io/badge/mariaDB-003545?style=for-the-badge&logo=mariaDB&logoColor=white">
+
+**API**<br>
+<img src="https://img.shields.io/badge/render-46E3B75?style=for-the-badge&logo=render&logoColor=white">
 
 </details>
 
   ### UI
-<details><summary>UI</summary>
+<details><summary>UI</summary><br>
 
+[:pencil2:UI 프로토타입 확인하기](https://repeated-sidewalk-fe0.notion.site/5669337e534e4bf3992bddacb22ae52e)
 ![팝핀 UI1](https://github.com/limmyou/poppin/assets/145823967/0d4d81dc-6c6c-4d3d-a4bd-890a1db157a5)
 ![팝핀 UI2](https://github.com/limmyou/poppin/assets/145823967/427b6756-8f5f-4b4c-b821-75d944179a09)
 
 </details>
 
   ### API
-<details><summary>API</summary>
+<details><summary>API</summary><br>
 
-API
+API 정의서 [바로가기](https://repeated-sidewalk-fe0.notion.site/API-4deebee8804c43caa68b1657e631126e)
+![API정의서](https://github.com/limmyou/poppin/assets/145823967/3247f7e8-37ff-4a97-b76b-721ec34028f7)
 
 </details>
 
