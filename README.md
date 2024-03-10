@@ -132,7 +132,10 @@ URL 공유
   ### 요구사항 정의서
 <details><summary>요구사항 정의서</summary><br>
 
-요구사항 정의서 [바로가기](https://repeated-sidewalk-fe0.notion.site/bad6778516b340408f10a3f7def106a8)
+요구사항 정의서 [바로가기](https://docs.google.com/document/d/1JX9v3cqvaIEHgLycZyrtmindwnDn3m1oBwyAH20dLG4/edit?usp=sharing)
+
+<img width="603" alt="팝핀 SRS" src="https://github.com/limmyou/poppin/assets/145823967/8a421c58-6cde-4f89-a634-7db981752168">
+
 
 </details>
 
