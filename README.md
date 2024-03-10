@@ -1,14 +1,15 @@
 # :pushpin: poppin
 ![팝핀 로고](https://github.com/limmyou/poppin/assets/145823967/3b759ff6-3757-4474-a767-b29cb5459d8b)
 
+[:arrow_right:팝핀 바로가기](https://pop-pin.store/) 
+
 :family: **TEAM**
 ---
-[:crown:김현우](https://github.com/kim-edwin)
-[:smiley_cat:강희림](https://github.com/limmyou) 
-[:hatching_chick:장경민](https://github.com/wkdrudals)
-[:rabbit:이윤아](https://github.com/Hwannni)
-[:pizza:최민환](https://github.com/wkdrudals)
-
+|[:crown:김현우](https://github.com/kim-edwin)|[:smiley_cat:강희림](https://github.com/limmyou) |[:hatching_chick:장경민](https://github.com/wkdrudals)|[:rabbit:이윤아](https://github.com/YoooonaLee)|[:pizza:최민환](https://github.com/Hwannni)|
+|:---:|:---:|:---:|:---:|:---:|
+|![남자미모티콘](https://github.com/limmyou/poppin/assets/145823967/de192276-80e5-43e6-962e-25f906ad28d6)|![여자미모티콘](https://github.com/limmyou/poppin/assets/145823967/cb38a500-5672-40cc-a331-e518697b66aa)|![여자미모티콘](https://github.com/limmyou/poppin/assets/145823967/cb38a500-5672-40cc-a331-e518697b66aa)|![여자미모티콘](https://github.com/limmyou/poppin/assets/145823967/cb38a500-5672-40cc-a331-e518697b66aa)|![남자미모티콘](https://github.com/limmyou/poppin/assets/145823967/de192276-80e5-43e6-962e-25f906ad28d6)|
+|`배포`, `Front-end`, `Back-end`|`Data Cleansing`|`Back-end`|`Back-end`|`Back-end`|
+|`Render`, `React`, `Django`, `AWS`|`MariaDB`|`Airflow`|` `|` `|
 
 **:calendar: 프로젝트 기간**
 ---
@@ -42,8 +43,6 @@
 ## 1. 프로젝트 개요
   ### 프로젝트 소개
 **팝핀**은 팝업 스토어 데이터를 한 곳에 모아 검색 및 저장하고, 저장된 팝업스토어를 기반으로 새로운 **팝업 스토어를 추천** 받을 수 있는 서비스입니다!
-
-[:round_pushpin:팝핀 바로가기:round_pushpin:](https://pop-pin.store/) 
 
   ### 역할 분담
 :crown:김현우<br>
