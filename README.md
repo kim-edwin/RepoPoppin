@@ -33,10 +33,12 @@
     
 - [3. 개발](#3.-개발)
   - [기술스택](#기술스택)
+  - [아키텍처](#아키텍처)
+  - [모델](#모델)
   - [UI](#ui)
   - [API](#api)
 
-- [5. 회고](#5.-회고)
+- [4. 회고](#4.-회고)
   - [한계점](#한계점)
   - [느낀점](#느낀점)
 
@@ -44,7 +46,6 @@
   ### 프로젝트 시나리오
 <details><summary>프로젝트 시나리오</summary>
   
-<div align="center">팝업스토어 키워드 검색량 추이</div>
 <img width="1100" alt="팝업스토어 검색량 추이" src="https://github.com/limmyou/poppin/assets/145823967/8cb61201-1cd6-4915-a5ca-776ae2f7d681">
 
 [현황]
@@ -161,6 +162,22 @@ URL 공유
 
 **API**<br>
 <img src="https://img.shields.io/badge/render-46E3B75?style=for-the-badge&logo=render&logoColor=white">
+
+</details>
+
+  ### 아키텍처
+<details><summary>아키텍처</summary><br>
+
+시스템 아키텍처 [바로가기](https://repeated-sidewalk-fe0.notion.site/a9520cff59ec49a4bd9cdea24c70443b)
+![시스템아키텍처](https://github.com/limmyou/poppin/assets/145823967/3ce205c4-453f-4fb9-8c0f-7689acec1f8d)
+
+</details>
+
+  ### 모델
+<details><summary>모델</summary><br>
+
+모델 설계서 [바로가기](https://repeated-sidewalk-fe0.notion.site/a65bc33b48dc488aac44eabf462dbadb)
+![모델설계서](https://github.com/limmyou/poppin/assets/145823967/9e03d52a-9654-4073-8119-547078a114c1)
 
 </details>
 
