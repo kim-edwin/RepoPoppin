@@ -34,11 +34,8 @@
     
 - [3. 개발](#3.-개발)
   - [기술스택](#기술스택)
-  - [API](#api)
-  - [배포](#배포)
-
-- [4. 테스트](#4.-테스트)
   - [UI](#ui)
+  - [API](#api)
 
 - [5. 회고](#5.-회고)
   - [한계점](#한계점)
@@ -100,6 +97,14 @@
 
 </details>
 
+  ### UI
+<details><summary>UI</summary>
+
+![팝핀 UI1](https://github.com/limmyou/poppin/assets/145823967/0d4d81dc-6c6c-4d3d-a4bd-890a1db157a5)
+![팝핀 UI2](https://github.com/limmyou/poppin/assets/145823967/427b6756-8f5f-4b4c-b821-75d944179a09)
+
+</details>
+
   ### API
 <details><summary>API</summary>
 
@@ -107,22 +112,7 @@ API
 
 </details>
 
-  ### 배포
-<details><summary>배포</summary>
-
-배포
-
-</details>
-
-## 4. 테스트
-  ### UI
-<details><summary>UI</summary>
-
-UI
-
-</details>
-
-## 5. 회고
+## 4. 회고
  ### 한계점
 <details><summary>한계점</summary>
 
