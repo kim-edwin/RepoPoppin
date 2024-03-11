@@ -24,6 +24,8 @@ class Store(CommonModel):
     p_chucheon = models.TextField(null=True, blank=True,)
     frontLat = models.FloatField(null=True, blank=True, default="37.486660")
     frontLon = models.FloatField(null=True, blank=True, default="127.021762")
+    upperAddrName = models.CharField(max_length=100, default="", null=True, blank=True)
+    middleAddrName = models.CharField(max_length=100, default="", null=True, blank=True)
     p_category = models.IntegerField(null=True, blank=True, default="99")
     is_visible = models.BooleanField(default=True)
 

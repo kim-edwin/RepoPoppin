@@ -1,5 +1,6 @@
 from datetime import timezone
 from django.conf import settings
+from django.db.models import Q
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
@@ -10,6 +11,8 @@ from reports.serializers import ReportSerializer
 from .models import Store
 from .serializers import StoreListSerializer, StoreDetailSerializer
 from reviews.serializers import ReviewSerializer
+
+from datetime import datetime, date
 
 # Create your views here.
 class Stores(APIView):
@@ -94,8 +97,7 @@ class StoreReviews(APIView):
             )
             serializer = ReviewSerializer(review)
             return Response(serializer.data)
-        
-
+    
 class StoreReports(APIView):
 
     permission_classes = [IsAuthenticated]
@@ -117,3 +119,52 @@ class StoreReports(APIView):
             )
             serializer = ReportSerializer(report)
             return Response(serializer.data)
+        
+class StoreSearch(APIView):
+    permission_classes = [IsAuthenticatedOrReadOnly] 
+
+    def get(self, request):
+        keyword = request.query_params.get("keyword", "")
+        upper_addr_name = request.query_params.get("upperAddrName", "")
+        middle_addr_name = request.query_params.get("middleAddrName", "")
+        search_date = request.query_params.get("searchDate", "")
+        is_end = request.query_params.get("isEnd", "True")  # 기본값은 True로 설정
+        page = request.query_params.get("page", 1)  # 페이지 번호
+
+        # 페이지 번호 유효성 검사
+        try:
+            page = int(page)
+            if page < 1:
+                page = 1
+        except ValueError:
+            page = 1
+
+        # 페이지 크기 설정
+        page_size = settings.PAGE_SIZE
+        start = (page - 1) * page_size
+        end = start + page_size
+
+        # 검색 조건 설정
+        query = Q(p_name__icontains=keyword) | Q(p_location__icontains=keyword) | Q(p_hashtag__icontains=keyword)
+
+        if upper_addr_name:
+            query &= Q(upperAddrName=upper_addr_name)
+        if middle_addr_name:
+            query &= Q(middleAddrName=middle_addr_name)
+        if search_date:
+            search_date = datetime.strptime(search_date, '%Y-%m-%d').date()
+            query &= Q(p_startdate__lte=search_date) & Q(p_enddate__gte=search_date)
+        if is_end.lower() == "true":  # isEnd가 True인 경우만 종료된 상점 제외
+            query &= ~Q(p_startdate=None, p_enddate=None)
+            query &= ~(Q(p_enddate__lt=date.today()) | Q(p_startdate__gt=date.today()))
+
+        # 필터링된 상점들을 가져오고 시리얼라이즈
+        visible_stores = []
+        for store in Store.objects.filter(query):
+            if store.p_startdate is None or store.p_enddate is None:
+                continue
+            visible_stores.append(store)
+        visible_stores = visible_stores[start:end]
+        serializer = StoreListSerializer(visible_stores, many=True, context={"request": request})
+
+        return Response(serializer.data)

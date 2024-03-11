@@ -53,7 +53,6 @@ class StoreListSerializer(ModelSerializer):
             "p_name",
             "p_startdate",
             "p_enddate",
-            "img_url",
             "p_location",
             "p_hashtag",
             "rating",
