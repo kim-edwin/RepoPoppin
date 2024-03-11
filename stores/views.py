@@ -26,7 +26,7 @@ class Stores(APIView):
         page_size = settings.PAGE_SIZE
         start = (page - 1) * page_size
         end = start + page_size
-        visible_stores = Store.objects.filter(is_visible=True).order_by('-p_startdate')[start:end]
+        visible_stores = Store.objects.filter(is_visible=True)[start:end]
         serializer = StoreListSerializer(
             visible_stores, 
             many=True,
