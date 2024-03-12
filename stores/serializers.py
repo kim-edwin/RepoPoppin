@@ -41,9 +41,9 @@ class StoreDetailSerializer(ModelSerializer):
         return store.is_liked(user)
     
 class StoreListSerializer(ModelSerializer):
-    rating = serializers.SerializerMethodField()
+    # rating = serializers.SerializerMethodField()
     status = serializers.SerializerMethodField()
-    is_liked = serializers.SerializerMethodField()
+    # is_liked = serializers.SerializerMethodField()
 
     class Meta:
         model = Store
@@ -55,22 +55,22 @@ class StoreListSerializer(ModelSerializer):
             "p_enddate",
             "p_location",
             "p_hashtag",
-            "rating",
+            # "rating",
             "status",
             "thumbnail",
-            "is_liked",
+            # "is_liked",
         )
         #depth = 1
     
-    def get_rating(self, store):
-        return store.rating()
+    # def get_rating(self, store):
+    #     return store.rating()
     
     def get_status(self, store):
         return store.status()
     
-    def get_is_liked(self, store):
-        user = self.context['request'].user
-        return store.is_liked(user)
+    # def get_is_liked(self, store):
+    #     user = self.context['request'].user
+    #     return store.is_liked(user)
     
 class TinyStoreSerializer(ModelSerializer):
     class Meta:
