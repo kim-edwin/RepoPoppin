@@ -156,7 +156,7 @@ class StoreSearch(APIView):
             query &= Q(p_startdate__lte=search_date) & Q(p_enddate__gte=search_date)
         if is_end.lower() == "true":  # isEnd가 True인 경우만 종료된 상점 제외
             query &= ~Q(p_startdate=None, p_enddate=None)
-            query &= ~(Q(p_enddate__lt=date.today()) | Q(p_startdate__gt=date.today()))
+            query &= ~(Q(p_enddate__lt=date.today()))
 
         # 필터링된 상점들을 가져오고 시리얼라이즈
         visible_stores = []
