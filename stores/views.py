@@ -160,7 +160,7 @@ class StoreSearch(APIView):
 
         # 필터링된 상점들을 가져오고 시리얼라이즈
         visible_stores = []
-        for store in Store.objects.filter(query):
+        for store in Store.objects.filter(query).order_by('-p_startdate'):
             if store.p_startdate is None or store.p_enddate is None:
                 continue
             visible_stores.append(store)

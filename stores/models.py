@@ -19,6 +19,7 @@ class Store(CommonModel):
     p_enddate = models.DateField(null=True, blank=True)
     img_url = models.URLField(default="", null=True, blank=True)
     news_url = models.URLField(default="")
+    news_id = models.CharField(max_length=100, default="", null=True, blank=True)
     p_location = models.CharField(max_length=100, default="", null=True, blank=True)
     p_hashtag = models.CharField(max_length=300, default="", null=True, blank=True)
     p_chucheon = models.TextField(null=True, blank=True,)
