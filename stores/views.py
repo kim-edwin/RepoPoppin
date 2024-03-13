@@ -173,11 +173,17 @@ class StoreInfo(APIView):
     permission_classes = [IsAuthenticatedOrReadOnly] 
 
     def get(self, request):
-        news_id = request.query_params.get("newsId", "")
-        store = Store.objects.get(news_id=news_id)
-        serializer = StoreDetailSerializer(
-            store,
-            context={"request": request},
-        ) #serializer에 context를 담아 보낼 수 있다. request를 담아 보내면 유용하다.
+        news_ids_param = request.query_params.get("newsId", "")
+        news_ids = [x.strip() for x in news_ids_param.split(",") if x.strip()]
         
-        return Response(serializer.data)
+        stores = []
+        for news_id in news_ids:
+            try:
+                store = Store.objects.get(news_id=news_id)
+                serializer = StoreDetailSerializer(store, context={"request": request})
+                stores.append(serializer.data)
+            except Store.DoesNotExist:
+                # Handle the case where the store with given newsId does not exist
+                pass
+        
+        return Response(stores)
