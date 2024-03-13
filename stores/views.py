@@ -168,3 +168,16 @@ class StoreSearch(APIView):
         serializer = StoreListSerializer(visible_stores, many=True, context={"request": request})
 
         return Response(serializer.data)
+    
+class StoreInfo(APIView):
+    permission_classes = [IsAuthenticatedOrReadOnly] 
+
+    def get(self, request):
+        news_id = request.query_params.get("newsId", "")
+        store = Store.objects.get(news_id=news_id)
+        serializer = StoreDetailSerializer(
+            store,
+            context={"request": request},
+        ) #serializer에 context를 담아 보낼 수 있다. request를 담아 보내면 유용하다.
+        
+        return Response(serializer.data)
