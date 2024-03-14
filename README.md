@@ -79,6 +79,7 @@
 ```
 **:thumbsup:팝업 스토어 추천 기능** 
 ```
+위치 기반 추천
 콘텐츠 기반 추천 
 사용자 기반 추천 
 ```
@@ -141,11 +142,11 @@
 <img src="https://img.shields.io/badge/apacheairflow-017CEE?style=for-the-badge&logo=apacheairflow&logoColor=white">
 <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=white">
 
+**Deployment**<br>
+<img src="https://img.shields.io/badge/render-46E3B75?style=for-the-badge&logo=render&logoColor=white">
+
 **DBMS**<br>
 <img src="https://img.shields.io/badge/mariaDB-003545?style=for-the-badge&logo=mariaDB&logoColor=white">
-
-**API**<br>
-<img src="https://img.shields.io/badge/render-46E3B75?style=for-the-badge&logo=render&logoColor=white">
 
 </details>
 
