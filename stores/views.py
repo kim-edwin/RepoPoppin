@@ -187,3 +187,25 @@ class StoreInfo(APIView):
                 pass
         
         return Response(stores)
+    
+class StoreSim(APIView):
+
+    def get_object(self, pk):
+        try:
+            return Store.objects.get(pk=pk)
+        except Store.DoesNotExist:
+            raise NotFound
+
+    def get(self, request, pk):
+        chucheon = self.get_object(pk).p_chucheon
+        chucheon_list = chucheon.split(',')
+        stores = []
+        for news_id in chucheon_list:
+            try:
+                store = Store.objects.get(news_id=news_id)
+                serializer = StoreListSerializer(store, context={"request": request})
+                stores.append(serializer.data)
+            except Store.DoesNotExist:
+                pass
+
+        return Response(stores)

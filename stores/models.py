@@ -78,4 +78,10 @@ class Store(CommonModel):
             return self.wishlists.filter(user=user).exists()
         else:
             return False
+        
+    class Meta:
+        # field_name 필드에 대한 인덱스를 생성합니다.
+        indexes = [
+            models.Index(fields=['news_id'])
+        ]
 
