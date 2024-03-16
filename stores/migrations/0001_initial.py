@@ -29,7 +29,6 @@ class Migration(migrations.Migration):
                 ('frontLon', models.FloatField(blank=True, default='127.021762', null=True)),
                 ('upperAddrName', models.CharField(blank=True, default='', max_length=100, null=True)),
                 ('middleAddrName', models.CharField(blank=True, default='', max_length=100, null=True)),
-                ('p_category', models.IntegerField(blank=True, default='99', null=True)),
                 ('is_visible', models.BooleanField(default=True)),
             ],
             options={

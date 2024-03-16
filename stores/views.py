@@ -5,8 +5,8 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
 from rest_framework.exceptions import NotFound, NotAuthenticated, ParseError, PermissionDenied
-from StoreAccessLog.models import StoreAccessLog
 
+from accesslogs.models import AccessLog
 from reports.serializers import ReportSerializer
 from .models import Store
 from .serializers import StoreListSerializer, StoreDetailSerializer
@@ -54,7 +54,7 @@ class StoreDetail(APIView):
         ) #serializer에 context를 담아 보낼 수 있다. request를 담아 보내면 유용하다.
 
         if request.user.is_authenticated:
-            StoreAccessLog.objects.create(user=request.user, store=store)
+            AccessLog.objects.create(user=request.user, store=store)
         
         return Response(serializer.data)
     

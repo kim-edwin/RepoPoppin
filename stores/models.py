@@ -27,7 +27,6 @@ class Store(CommonModel):
     frontLon = models.DecimalField(max_digits=12, decimal_places=8, null=True, blank=True, default="127.02176200")
     upperAddrName = models.CharField(max_length=100, default="", null=True, blank=True)
     middleAddrName = models.CharField(max_length=100, default="", null=True, blank=True)
-    # p_category = models.IntegerField(null=True, blank=True, default="99")
     is_visible = models.BooleanField(default=True)
 
     def __str__(self):

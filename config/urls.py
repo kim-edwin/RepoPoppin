@@ -23,5 +23,6 @@ urlpatterns = [
     path("api/v1/wishlists/", include("wishlists.urls")),
     path("api/v1/users/", include("users.urls")),
     path("api/v1/reviews/", include("reviews.urls")),
-    path("api/v1/recentviews/", include("StoreAccessLog.urls")),
+    path("api/v1/recentviews/", include("accesslogs.urls")),
+    path("api/v1/topstores/", include("topstores.urls")),
 ]

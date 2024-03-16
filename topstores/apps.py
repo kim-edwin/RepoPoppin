@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class StoreaccesslogConfig(AppConfig):
+class TopstoresConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'StoreAccessLog'
+    name = 'topstores'

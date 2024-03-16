@@ -7,7 +7,7 @@ from rest_framework.exceptions import NotFound
 from config import settings
 from stores.models import Store
 from stores.serializers import StoreListSerializer
-from .models import StoreAccessLog
+from .models import AccessLog
 
 class RecentStores(APIView):
 
@@ -23,7 +23,7 @@ class RecentStores(APIView):
         page_size = settings.PAGE_SIZE
         start = (page - 1) * page_size
         end = start + page_size
-        user_logs = StoreAccessLog.objects.filter(user=request.user).order_by('-accessed_at').distinct().values_list('store', flat=True)[start:end]
+        user_logs = AccessLog.objects.filter(user=request.user).order_by('-accessed_at').distinct().values_list('store', flat=True)[start:end]
         stores = Store.objects.filter(pk__in=user_logs)
         serializer = StoreListSerializer(
             stores, 
