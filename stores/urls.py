@@ -6,6 +6,7 @@ urlpatterns = [
     path("search", views.StoreSearch.as_view()),
     path("info", views.StoreInfo.as_view()),
     path("near", views.StoreNear.as_view()),
+    path("comming", views.StoreComming.as_view()),
     path("<int:pk>", views.StoreDetail.as_view()),
     path("<int:pk>/reviews", views.StoreReviews.as_view()),
     path("<int:pk>/reports", views.StoreReports.as_view()),

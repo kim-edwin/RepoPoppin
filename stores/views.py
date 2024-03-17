@@ -236,3 +236,20 @@ class StoreNear(APIView):
         # 거리 정보를 Serializer에 전달하기 위해 context에 사용자 위치 추가
         serializer = StoreNearSerializer(near_stores, many=True, context={"request": request, "user_location": user_location})
         return Response(serializer.data)
+
+class StoreComming(APIView):
+    def get(self, request):
+        now = timezone.now()
+        
+        comming_stores = Store.objects.filter(
+            p_startdate__gt=now,
+            is_visible=True
+        ).order_by('p_startdate')[:5]
+
+        serializer = StoreListSerializer(
+            comming_stores,
+            many=True,
+            context={"request": request}
+        )
+
+        return Response(serializer.data)

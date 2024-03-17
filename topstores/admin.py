@@ -1,3 +1,10 @@
 from django.contrib import admin
+from .models import TopStore
 
-# Register your models here.
+@admin.register(TopStore)
+class TopStoreAdmin(admin.ModelAdmin):
+    list_display = (
+        "updated_at",
+        "store",
+        "rank",
+    )
