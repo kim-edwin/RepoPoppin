@@ -1,4 +1,5 @@
 from datetime import timezone
+from django.utils import timezone
 from django.conf import settings
 from django.db.models import Q
 from rest_framework.views import APIView
@@ -9,10 +10,11 @@ from rest_framework.exceptions import NotFound, NotAuthenticated, ParseError, Pe
 from accesslogs.models import AccessLog
 from reports.serializers import ReportSerializer
 from .models import Store
-from .serializers import StoreListSerializer, StoreDetailSerializer
+from .serializers import StoreListSerializer, StoreDetailSerializer, StoreNearSerializer
 from reviews.serializers import ReviewSerializer
 
 from datetime import datetime, date
+from geopy.distance import geodesic
 
 # Create your views here.
 class Stores(APIView):
@@ -209,3 +211,28 @@ class StoreSim(APIView):
                 pass
 
         return Response(stores)
+
+class StoreNear(APIView):
+    def get(self, request):
+        latitude = request.query_params.get('latitude')
+        longitude = request.query_params.get('longitude')
+
+        # 사용자의 현재 위치
+        user_location = (float(latitude), float(longitude))
+
+        # 5km 반경 내의 상점을 조회
+        near_stores = Store.objects.filter(
+            p_startdate__lte=timezone.now(),
+            p_enddate__gte=timezone.now(),
+            is_visible=True
+        )
+
+        # 거리를 계산하여 상점들을 정렬
+        near_stores = sorted(near_stores, key=lambda store: geodesic(user_location, (float(store.frontLat), float(store.frontLon))).kilometers)
+
+        # 가장 가까운 5개의 상점만 선택
+        near_stores = near_stores[:5]
+
+        # 거리 정보를 Serializer에 전달하기 위해 context에 사용자 위치 추가
+        serializer = StoreNearSerializer(near_stores, many=True, context={"request": request, "user_location": user_location})
+        return Response(serializer.data)

@@ -3,6 +3,8 @@ from rest_framework.serializers import ModelSerializer
 from .models import Store
 from wishlists.models import Wishlist
 
+from geopy.distance import geodesic
+
 class StoreDetailSerializer(ModelSerializer):
 
     rating = serializers.SerializerMethodField()
@@ -80,3 +82,35 @@ class TinyStoreSerializer(ModelSerializer):
             "pk",
             "p_name",
             )
+
+class StoreNearSerializer(ModelSerializer):
+    status = serializers.SerializerMethodField()
+    distance = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Store
+        fields = (
+            "id",
+            "pk",
+            "p_name",
+            "p_startdate",
+            "p_enddate",
+            "p_location",
+            "p_hashtag",
+            "status",
+            "thumbnail",
+            "distance",
+        )
+
+    def get_status(self, store):
+        return store.status()
+    
+    def get_distance(self, obj):
+        # 사용자의 현재 위치
+        user_location = self.context['user_location']
+        store_location = (obj.frontLat, obj.frontLon)
+
+        # 거리를 계산하여 반환합니다.
+        distance = geodesic(user_location, store_location).kilometers
+        return distance
+    

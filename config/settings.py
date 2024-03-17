@@ -111,7 +111,8 @@ DATABASES = {'default': {
         'USER':  'encore',
         'PASSWORD' : env('SECRET_PW'),
         'HOST' : '52.78.92.36',
-        'PORT':  '3306'                      
+        'PORT':  '3306',
+        'OPTIONS': {'charset': 'utf8mb4'},                      
             }}
 
 # if DEBUG:
