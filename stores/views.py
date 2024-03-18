@@ -31,7 +31,10 @@ class Stores(APIView):
         page_size = settings.PAGE_SIZE
         start = (page - 1) * page_size
         end = start + page_size
-        visible_stores = Store.objects.filter(is_visible=True).order_by('-id')[start:end]
+
+        today = date.today()
+
+        visible_stores = Store.objects.filter(is_visible=True, p_enddate__gte=today).order_by('-id')[start:end]
         serializer = StoreListSerializer(
             visible_stores, 
             many=True,
@@ -140,7 +143,7 @@ class StoreSearch(APIView):
                 page = 1
         except ValueError:
             page = 1
-
+            
         # 페이지 크기 설정
         page_size = settings.PAGE_SIZE
         start = (page - 1) * page_size
