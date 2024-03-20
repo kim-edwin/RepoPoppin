@@ -9,12 +9,17 @@ from rest_framework.exceptions import NotFound, NotAuthenticated, ParseError, Pe
 
 from accesslogs.models import AccessLog
 from reports.serializers import ReportSerializer
+from reviews.models import Review
 from .models import Store
 from .serializers import StoreListSerializer, StoreDetailSerializer, StoreNearSerializer
 from reviews.serializers import ReviewSerializer
 
 from datetime import datetime, date
 from geopy.distance import geodesic
+import numpy as np
+import pandas as pd
+from keras.models import load_model
+from Recommend.models import RecommenderNet
 
 # Create your views here.
 class Stores(APIView):
@@ -31,7 +36,10 @@ class Stores(APIView):
         page_size = settings.PAGE_SIZE
         start = (page - 1) * page_size
         end = start + page_size
-        visible_stores = Store.objects.filter(is_visible=True).order_by('-id')[start:end]
+
+        today = date.today()
+
+        visible_stores = Store.objects.filter(is_visible=True, p_enddate__gte=today).order_by('-id')[start:end]
         serializer = StoreListSerializer(
             visible_stores, 
             many=True,
@@ -140,7 +148,7 @@ class StoreSearch(APIView):
                 page = 1
         except ValueError:
             page = 1
-
+            
         # 페이지 크기 설정
         page_size = settings.PAGE_SIZE
         start = (page - 1) * page_size
@@ -236,3 +244,96 @@ class StoreNear(APIView):
         # 거리 정보를 Serializer에 전달하기 위해 context에 사용자 위치 추가
         serializer = StoreNearSerializer(near_stores, many=True, context={"request": request, "user_location": user_location})
         return Response(serializer.data)
+
+class StoreComming(APIView):
+    def get(self, request):
+        now = timezone.now()
+        
+        comming_stores = Store.objects.filter(
+            p_startdate__gt=now,
+            is_visible=True
+        ).order_by('p_startdate')[:5]
+
+        serializer = StoreListSerializer(
+            comming_stores,
+            many=True,
+            context={"request": request}
+        )
+
+        return Response(serializer.data)
+    
+class NewsRecommender:
+    def __init__(self, model_path, request):
+        self.model_path = model_path
+        self.model = None
+        self.news_new2news_encoded = None
+        self.user = request.user.pk
+    
+    def load_data(self):
+
+        
+        stores = Store.objects.all().values('id', 'news_id', 'p_enddate')
+        stores_store_df = pd.DataFrame(stores)
+
+        # reviews_review_df = pd.read_sql_query(query2, self.connection)
+        reviews = Review.objects.all().values('store', 'user', 'rating')
+        reviews_review_df = pd.DataFrame(reviews)
+        
+        chucheon_df = pd.merge(reviews_review_df, stores_store_df, left_on='store', right_on='id')
+
+        self.new_chucheon_df = chucheon_df[['news_id', 'user', 'rating']]
+        self.stores_store_df = stores_store_df
+
+        user_ids = reviews_review_df["user"].unique().tolist()
+        news_ids = stores_store_df["news_id"].unique().tolist()
+
+        self.user2user_encoded = {x: i for i, x in enumerate(user_ids)}  # 사용자 ID를 인덱스로 매핑하는 딕셔너리
+        self.userencoded2user = {x: i for i, x in enumerate(user_ids)}  #  ID를 인덱스로 매핑하는 딕셔너리
+
+        self.news2news_encoded = {x: i for i, x in enumerate(news_ids)}  # 뉴스 ID를 인덱스로 매핑하는 딕셔너리
+        self.news_encoded2news  = {x: i for i, x in enumerate(news_ids)}  # 뉴스 ID를 인덱스로 매핑하는 딕셔너리
+        
+    def load_model(self):
+        self.model = load_model(self.model_path, custom_objects={'RecommenderNet': RecommenderNet})
+    
+    def recommend_news(self):
+        news_watched_by_user = self.new_chucheon_df[self.new_chucheon_df.user == self.user]
+        news_not_watched = self.stores_store_df[
+            (~self.stores_store_df["news_id"].isin(news_watched_by_user.news_id.values)) & 
+            (self.stores_store_df["p_enddate"] > date.today())]["news_id"]
+        
+        news_not_watched = list(set(news_not_watched).intersection(set(self.news2news_encoded.keys())))
+        news_not_watched = [[self.news2news_encoded.get(x)] for x in news_not_watched]
+        
+        user_encoder = self.user2user_encoded.get(self.user)
+        user_news_array = np.hstack(([[user_encoder]] * len(news_not_watched), news_not_watched))
+        ratings = self.model.predict(user_news_array).flatten()
+        top_ratings_indices = ratings.argsort()[-5:][::-1]
+        
+        selected_news_indices = [news_not_watched[i] for i in top_ratings_indices]
+        self.news_new2news_encoded = {value: key for key, value in self.news_encoded2news.items()}
+        recommended_news_ids = [self.news_new2news_encoded[index[0]] for index in selected_news_indices]
+        return recommended_news_ids
+    
+class StoreRecommend(APIView):
+    
+    def get(self, request):
+        recommender = NewsRecommender(
+            model_path="./Recommend/recommender_model.keras",
+            request=request
+        )
+        recommender.load_data()
+        recommender.load_model()
+        recommended_news_ids = recommender.recommend_news()
+
+        stores = []
+
+        for id in recommended_news_ids:
+            try:
+                store = Store.objects.get(news_id=id)
+                serializer = StoreListSerializer(store, context={"request": request})
+                stores.append(serializer.data)
+            except Store.DoesNotExist:
+                pass
+
+        return Response(stores)

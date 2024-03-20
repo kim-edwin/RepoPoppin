@@ -1,5 +1,6 @@
 # :pushpin: poppin
-![팝핀 로고](https://github.com/limmyou/poppin/assets/145823967/3b759ff6-3757-4474-a767-b29cb5459d8b)
+
+![poppinlogo](https://github.com/kim-edwin/RepoPoppin/assets/145823967/7ee8f01e-1e22-48b1-8830-33faf47a3eda)
 
 \# 팝핀
 
