@@ -264,34 +264,13 @@ class StoreComming(APIView):
     
 class NewsRecommender:
     def __init__(self, model_path, request):
-    # def __init__(self, model_path, db_host, db_user, db_password, db_name, db_port=3306):
         self.model_path = model_path
-        # self.db_host = db_host
-        # self.db_user = db_user
-        # self.db_password = db_password
-        # self.db_name = db_name
-        # self.db_port = db_port
-        
-        # self.connection_url = f"mysql+pymysql://{db_user}:{db_password}@{db_host}:{db_port}/{db_name}"
-        # self.connection = None
         self.model = None
-        # self.new_chucheon_df = None
-        # self.user2user_encoded = None
-        # self.news2news_encoded = None
         self.news_new2news_encoded = None
-
         self.user = request.user.pk
     
     def load_data(self):
-        # self.connection = pymysql.connect(
-        #     host=self.db_host,
-        #     user=self.db_user,
-        #     password=self.db_password,
-        #     database=self.db_name,
-        #     port=self.db_port
-        # )
-        # query1 = "SELECT * FROM stores_store"
-        # query2 = "SELECT * FROM reviews_review"
+
         
         stores = Store.objects.all().values('id', 'news_id', 'p_enddate')
         stores_store_df = pd.DataFrame(stores)
@@ -300,17 +279,14 @@ class NewsRecommender:
         reviews = Review.objects.all().values('store', 'user', 'rating')
         reviews_review_df = pd.DataFrame(reviews)
         
-        # 두 데이터프레임 조인
         chucheon_df = pd.merge(reviews_review_df, stores_store_df, left_on='store', right_on='id')
 
-        # 필요에 따라 컬럼 이름을 변경할 수 있습니다.
         self.new_chucheon_df = chucheon_df[['news_id', 'user', 'rating']]
         self.stores_store_df = stores_store_df
 
         user_ids = reviews_review_df["user"].unique().tolist()
         news_ids = stores_store_df["news_id"].unique().tolist()
 
-                # 사용자 및 뉴스를 인코딩하는 딕셔너리 생성
         self.user2user_encoded = {x: i for i, x in enumerate(user_ids)}  # 사용자 ID를 인덱스로 매핑하는 딕셔너리
         self.userencoded2user = {x: i for i, x in enumerate(user_ids)}  #  ID를 인덱스로 매핑하는 딕셔너리
 
@@ -321,8 +297,6 @@ class NewsRecommender:
         self.model = load_model(self.model_path, custom_objects={'RecommenderNet': RecommenderNet})
     
     def recommend_news(self):
-        # random_user_id = self.new_chucheon_df.user_id.sample(1).iloc[0]
-        # news_watched_by_user = self.new_chucheon_df[self.new_chucheon_df.user_id == random_user_id]
         news_watched_by_user = self.new_chucheon_df[self.new_chucheon_df.user == self.user]
         news_not_watched = self.stores_store_df[
             (~self.stores_store_df["news_id"].isin(news_watched_by_user.news_id.values)) & 
@@ -331,7 +305,6 @@ class NewsRecommender:
         news_not_watched = list(set(news_not_watched).intersection(set(self.news2news_encoded.keys())))
         news_not_watched = [[self.news2news_encoded.get(x)] for x in news_not_watched]
         
-        # user_encoder = self.user2user_encoded.get(random_user_id)
         user_encoder = self.user2user_encoded.get(self.user)
         user_news_array = np.hstack(([[user_encoder]] * len(news_not_watched), news_not_watched))
         ratings = self.model.predict(user_news_array).flatten()
@@ -347,11 +320,6 @@ class StoreRecommend(APIView):
     def get(self, request):
         recommender = NewsRecommender(
             model_path="./Recommend/recommender_model.keras",
-            # db_host="52.78.92.36",
-            # db_user="encore",
-            # db_password="1q2w3e!",
-            # db_name="mydata2",
-            # db_port=3306
             request=request
         )
         recommender.load_data()

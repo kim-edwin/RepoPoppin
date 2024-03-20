@@ -1,11 +1,6 @@
 import keras
 from keras import layers
 from keras import ops
-import tensorflow as tf
-import pymysql
-import numpy as np
-import pandas as pd
-import sys
 
 # 사용자 정의 클래스 정의
 class RecommenderNet(keras.Model):
