@@ -337,4 +337,3 @@ class StoreRecommend(APIView):
                 pass
 
         return Response(stores)
-    
