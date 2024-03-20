@@ -18,8 +18,6 @@ from datetime import datetime, date
 from geopy.distance import geodesic
 import numpy as np
 import pandas as pd
-import pymysql
-from sqlalchemy import create_engine
 from keras.models import load_model
 from Recommend.models import RecommenderNet
 

@@ -34,8 +34,7 @@ environ.Env.read_env(
 SECRET_KEY = env('SECRET_KEY_DJANGO')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
+DEBUG = False
 ALLOWED_HOSTS = ["127.0.0.1", "mysite-wfiz.onrender.com", "backend-o6c1.onrender.com", "backend.pop-pin.store",]
 
 
