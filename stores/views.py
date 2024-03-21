@@ -39,7 +39,7 @@ class Stores(APIView):
 
         today = date.today()
 
-        visible_stores = Store.objects.filter(is_visible=True, p_enddate__gte=today).order_by('-id')[start:end]
+        visible_stores = Store.objects.filter(is_visible=True, p_enddate__gte=today).order_by('p_enddate')[start:end]
         serializer = StoreListSerializer(
             visible_stores, 
             many=True,
