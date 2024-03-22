@@ -263,7 +263,10 @@ class StoreComming(APIView):
         return Response(serializer.data)
     
 class NewsRecommender:
-    def __init__(self, model_path, request):
+    def __init__(self, model_path, num_users, num_news, embedding_size, request):
+        self.num_users = num_users
+        self.num_news = num_news
+        self.embedding_size = embedding_size
         self.model_path = model_path
         self.model = None
         self.news_new2news_encoded = None
@@ -319,8 +322,11 @@ class StoreRecommend(APIView):
     
     def get(self, request):
         recommender = NewsRecommender(
-            model_path="./Recommend/recommender_model.keras",
-            request=request
+            model_path="./Recommend/new_keras_model.keras",
+            request=request,
+            num_users = 1010,
+            num_news = 253,
+            embedding_size = 100
         )
         recommender.load_data()
         recommender.load_model()
