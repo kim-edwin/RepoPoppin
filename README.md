@@ -1,134 +1,106 @@
-# :pushpin: poppin
+# :pushpin: POPPIN'
 
-![poppinlogo](https://github.com/kim-edwin/RepoPoppin/assets/145823967/7ee8f01e-1e22-48b1-8830-33faf47a3eda)
+![image](https://github.com/kim-edwin/repopoppin-frontend/assets/113911630/39e24ab1-09e6-40f9-aba6-2f039c954e34)
 
-\# 팝핀
+
+## WE CONNECT POP-UP CULTURE
 
 "팝핀"은 **팝업 스토어 데이터를 한 곳에 모아 검색 및 저장**하고, 저장된 팝업스토어를 기반으로 **새로운 팝업 스토어를 추천**받을 수 있는 `팝업 스토어 정보 저장 & 추천 모바일 웹 서비스`입니다
 
-[:arrow_right:팝핀 바로가기](https://pop-pin.store/) 
+[:arrow_right:팝핀 사이트 바로가기](https://pop-pin.store/)
 
-:family: **TEAM**
----
-|[:crown:김현우](https://github.com/kim-edwin)|[:smiley_cat:강희림](https://github.com/limmyou) |[:hatching_chick:장경민](https://github.com/wkdrudals)|[:rabbit:이윤아](https://github.com/YoooonaLee)|[:pizza:최민환](https://github.com/Hwannni)|
-|:---:|:---:|:---:|:---:|:---:|
-|<img width="500" src="https://github.com/limmyou/poppin/assets/145823967/de192276-80e5-43e6-962e-25f906ad28d6">|<img width="500" src="https://github.com/limmyou/poppin/assets/145823967/cb38a500-5672-40cc-a331-e518697b66aa">|<img width="500" src="https://github.com/limmyou/poppin/assets/145823967/cb38a500-5672-40cc-a331-e518697b66aa">|<img width="500" src="https://github.com/limmyou/poppin/assets/145823967/cb38a500-5672-40cc-a331-e518697b66aa">|<img width="500" src="https://github.com/limmyou/poppin/assets/145823967/de192276-80e5-43e6-962e-25f906ad28d6">|
-|`배포`, `Front-end`, `Back-end`|`Data Cleansing`|`Back-end`|`Back-end`|`Back-end`|
-|`Render`, `React`, `Django`, `AWS`|`MariaDB`|`Airflow`|` `|` `|
+위 사이트는 모바일에 최적화되어있습니다.
 
-**:calendar: 프로젝트 기간**
----
-> 2024년 2월 19일 ~ 2024년 3월 22일
+## :family: **TEAM**
 
-**:page_facing_up: 목차**
----
+|                                  [:crown:김현우](https://github.com/kim-edwin)                                  |                                [:smiley_cat:강희림](https://github.com/limmyou)                                 |                             [:hatching_chick:장경민](https://github.com/wkdrudals)                              |                                 [:rabbit:이윤아](https://github.com/YoooonaLee)                                 |                                   [:pizza:최민환](https://github.com/Hwannni)                                   |
+| :-------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------: |
+| <img width="500" src="https://github.com/kim-edwin/repopoppin-frontend/assets/113911630/2dfce76e-4893-4f8a-9736-befd68706875"> | <img width="500" src="https://github.com/kim-edwin/repopoppin-frontend/assets/113911630/66fb1095-3265-4341-9842-305129f4473e"> | <img width="500" src="https://github.com/kim-edwin/repopoppin-frontend/assets/113911630/a261de1f-64f2-41c2-947b-67704948a85f"> | <img width="500" src="https://github.com/kim-edwin/repopoppin-frontend/assets/113911630/4f64ae9f-ff44-41f1-a97f-27dc26d8229f"> | <img width="500" src="https://github.com/kim-edwin/repopoppin-frontend/assets/113911630/e461138e-f1fa-40e3-9084-f96cbc7409af"> |
+|                                                  `Full stack`                                                   |                                                 `Data Analysis`                                                 |                                                   `Back-end`                                                    |                                                    `Modeler`                                                    |                                                    `Modeler`                                                    |
+|                                            `AWS`, `React`, `Django`                                             |                                                `Python, MariaDB`                                                |                                                `Python, Airflow`                                                |                                                       ` `                                                       |                                           `Python, tensorflow, keras`                                           |
 
-- [1. 프로젝트 개요](#1.-프로젝트-개요)
-  - [프로젝트 시나리오](#프로젝트-시나리오)
-  - [주요 기능](#주요-기능)
-  - [기획 과정](#기획-과정)
- 
-- [2. 요구사항 정의](#2.-요구사항-정의)
-  - [유저 시나리오](#유저-시나리오)
-  - [요구사항 정의서](#요구사항-정의서)
-    
-- [3. 개발](#3.-개발)
-  - [기술스택](#기술스택)
-  - [아키텍처](#아키텍처)
-  - [모델](#모델)
-  - [UI](#ui)
-  - [API](#api)
-
-- [4. 회고](#4.-회고)
-  - [한계점](#한계점)
-  - [느낀점](#느낀점)
+<br/>
+<br/>
 
 ## 1. 프로젝트 개요
-  ### 프로젝트 시나리오
-<details><summary>프로젝트 시나리오</summary><br>
 
-[현황]
-> 최근 팝업 스토어의 인기가 급증하고 있는 상황에서, 고객들은 팝업 스토어에 대한 종합적인 정보를 한 곳에서 손쉽게 찾고자 하는 수요가 높아지고 있습니다
+[팝업스토어란?]
 
-[한계]
-> 팝업 스토어 정보를 제공하는 플랫폼은 제한적이며, 고객들이 정보를 얻는 과정이 번거롭고 비효율적입니다. 또한, 기업들은 주로 소규모 SNS 마케팅 채널을 활용하고 있지만, 홍보 효과를 극대화하기 위한 효율적인 방법에 대한 한계를 경험하고 있습니다.
+> 팝업스토어는 짧은 기간 운영되는 오프라인 소매점이며, `자사 브랜드를 홍보`하기 위한 수단으로서 개설하는 경우가 대부분입니다. 때문에 상품만 판매하는 것이 아니라 전시공간이나 체험관 등을 팝업스토어 내에 마련하는 등 브랜드의 요소를 많이 가미하여 만듭니다.
+
+> '더 현대 서울', '성수동' 등 MZ 세대들의 핫플레이스를 중심으로 `최근 폭발적으로 성장`하고 있습니다.
+
+[문제현상]
+
+> 많은 브랜드들이 앞다투어 팝업스토어 시장에 뛰어들고 있음에도 불구하고, `팝업스토어를 홍보하는 채널은 개인이 운영하는 블로그나 SNS 피드에 의존`하고 있습니다. 이러한 폐쇄적인 구조에서 `브랜드와 고객간의 정보 불평등`이 발생되고 있고 소비자가 `다양한 팝업스토어를 접할 기회가 상실`되고 있다는 점에 저희는 주목하였습니다.
 
 [솔루션]
-> 팝업 스토어에 대한 종합적인 정보를 제공하고 추천하는 모바일 웹 서비스를 구축함으로써, 고객들이 원하는 팝업 스토어를 손쉽게 찾을 수 있도록 지원하며, 개인화된 추천 시스템을 구축하여 고객들의 취향과 관심사에 맞춘 새로운 팝업 스토어를 발견할 수 있도록 합니다. 기업들에게는 효율적인 팝업 스토어 홍보 채널을 제공하여 고객에게 보다 직접적으로 접근할 수 있도록 하여 마케팅 효과를 극대화하도록 합니다.
 
-</details>
+> 팝업 스토어에 대한 `종합적인 정보를 제공하고 추천하는 모바일 웹 서비스`를 구축함으로써, 고객들이 원하는 팝업 스토어를 손쉽게 찾을 수 있도록 지원하며, 개인화된 추천 시스템을 구축하여 고객들의 취향과 관심사에 맞춘 새로운 팝업 스토어를 발견할 수 있도록 합니다. 기업들에게는 `효율적인 팝업 스토어 홍보 채널을 제공`하여 고객에게 보다 직접적으로 접근할 수 있도록 하여 `마케팅 효과를 극대화`하도록 합니다.
 
-  ### 주요 기능
-<details><summary>주요 기능</summary><br>
+> 본 프로젝트는 상품성 또한 염두에 두었습니다. `브랜드와의 제휴를 통해 광고 수익`을 얻을 수 있으며, `데이터 수집 전 과정을 자동화` 를 통해 인건비를 절감시킬 수 있습니다.
+<br/>
+<br/>
 
-**:triangular_flag_on_post:팝업 스토어 정보**  
+## 2. 주요 기능
+
+**:triangular_flag_on_post:팝업 스토어 정보**
+
 ```
-현재 진행중/예정중인 팝업 스토어 
-- 팝업 스토어 상세 정보 
-- 이용후기
-- 원문 기사 이동
-- 위시리스트
-- URL 공유 
-- 리포트 작성
-- 지도
+현재 진행중/예정중인 팝업 스토어
+- 팝업 스토어 상세 정보 (기간, 위치, 해시태그)
+- 유저 이용후기
+- URL 공유
 ```
-**:mag_right:팝업 스토어 검색 기능** 
+
+**:mag_right:팝업 스토어 검색 기능**
+
 ```
+- 키워드 검색
 - 날짜 선택
 - 지역 선택
-- 실시간 인기 검색어
 ```
-**:thumbsup:팝업 스토어 추천 기능** 
+
+**:thumbsup:팝업 스토어 추천 기능**
+
 ```
 위치 기반 추천
-콘텐츠 기반 추천 
-사용자 기반 추천 
+콘텐츠 기반 추천 (연관 팝업스토어 추천)
+사용자 기반 추천 (선호하는 팝업스토어 기반 추천)
 ```
-**:eyes:최근 조회한 스토어** 
+
+**:eyes:최근 조회한 스토어**
+
 ```
 최근 조회한 스토어 목록
 ```
-**:hearts:위시리스트** 
-```
-좋아요 한 스토어 목록
-```
-</details>
 
-  ### 기획 과정
-<details><summary>기획 과정</summary><br>
-  
-1. Notion 문서 [확인하기](https://www.notion.so/bad6778516b340408f10a3f7def106a8?pvs=4)
-![노션](https://github.com/kim-edwin/RepoHeart/assets/145823967/f1d5fa4b-fb96-41c5-8584-a5e47983c907)
+**:hearts:위시리스트**
 
-2. WBS 문서 [확인하기](https://docs.google.com/spreadsheets/d/1B9ElpTqgXPPfNXbQ8e2fhkwKi8PkeVj9/edit#gid=1081654881)
+```
+좋아요한 스토어 목록
+```
+<br/>
+<br/>
+
+## 3. 기획 및 개발 일정 (WBS) 
+
+> 기획, 설계, 디자인, 백엔드, 프론트엔드, 프로젝트 정리의 6가지 카테고리로 Task를 구분짓고 일정을 할당하였습니다. 
+
+[프로젝트 기획서 확인하기](https://repeated-sidewalk-fe0.notion.site/05d18d404f0d413583dae72d61e7f53b?pvs=4)
+
+[WBS 확인하기](https://docs.google.com/spreadsheets/d/1B9ElpTqgXPPfNXbQ8e2fhkwKi8PkeVj9/edit?usp=sharing&ouid=115893901626478389096&rtpof=true&sd=true)
+
 <img width="755" alt="WBS" src="https://github.com/limmyou/poppin/assets/145823967/fb2bdbd4-bb63-4102-b4ce-1920d1e76e87">
 
-</details>
 
-## 2. 요구사항 정의서
-  ### 유저 시나리오
-<details><summary>유저 시나리오</summary><br>
+<br/>
+<br/>
 
-:raising_hand:**우리 서비스를 이용할 유저**
-```
-마케팅 회사에 출근한 지 1년 차인 신입 기획자 김채원씨
-```
-  
-</details>
+## 4. 개발
 
-  ### 요구사항 정의서
-<details><summary>요구사항 정의서</summary><br>
+### 기술스택
 
-:arrow_right: 요구사항 정의서 [바로가기](https://docs.google.com/document/d/1JX9v3cqvaIEHgLycZyrtmindwnDn3m1oBwyAH20dLG4/edit?usp=sharing)
-
-![요구사항정의서](https://github.com/kim-edwin/RepoHeart/assets/145823967/97d33827-04fb-42a7-abf8-654bb8510846)
-
-
-</details>
-
-## 3. 개발
-  ### 기술스택
-<details><summary>기술스택</summary><br>
 
 **Environment**<br>
 <img src="https://img.shields.io/badge/visualstudiocode-007ACC?style=for-the-badge&logo=visualstudiocode&logoColor=white">
@@ -136,9 +108,8 @@
 <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">
 <img src="https://img.shields.io/badge/notion-000000?style=for-the-badge&logo=notion&logoColor=white">
 
-
 **Development**<br>
-<img src="https://img.shields.io/badge/python-3776AB?style=for-the-badge&logo=python&logoColor=white"> 
+<img src="https://img.shields.io/badge/python-3776AB?style=for-the-badge&logo=python&logoColor=white">
 <img src="https://img.shields.io/badge/django-092E20?style=for-the-badge&logo=django&logoColor=white">
 <img src="https://img.shields.io/badge/apacheairflow-017CEE?style=for-the-badge&logo=apacheairflow&logoColor=white">
 <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=white">
@@ -149,68 +120,81 @@
 **DBMS**<br>
 <img src="https://img.shields.io/badge/mariaDB-003545?style=for-the-badge&logo=mariaDB&logoColor=white">
 
-</details>
+<br/>
+<br/>
 
-  ### 아키텍처
-<details><summary>아키텍처</summary><br>
 
-:arrow_right: 시스템 아키텍처 [확인하기](https://repeated-sidewalk-fe0.notion.site/a9520cff59ec49a4bd9cdea24c70443b)
-![시스템아키텍처](https://github.com/limmyou/poppin/assets/145823967/3ce205c4-453f-4fb9-8c0f-7689acec1f8d)
 
-</details>
 
-  ### 모델
-<details><summary>모델</summary><br>
+### 시스템 아키텍처
 
+> 백엔드 서버는 Django Rest Framework를 사용하였고 웹은 React로 구현하였습니다. 
+
+> 데이터 수집 자동화 및 적재를 위해 EC2 인스턴스를 활용하였습니다.
+```mermaid
+graph LR
+N(News Archive) --> A[Crawling Service] --Daily batch / Contetns--> D((DataBase))
+D --News contents--> ML(ML Service)
+ML --Model--> API(API/Inference Server)
+D --Contents--> API
+D --Service info --> API
+API --> W(Web Client)
+```
+
+<br/>
+<br/>
+
+
+### 모델
+
+> 현재 보고 있는 팝업스토어와 유사한 팝업스토어를 추천하기 위해 FastText와 Cosine Similarity를 통해 컨텐츠 기반 필터링 모델을 구현하였습니다.
+
+> 또한, 사용자의 후기 및 평점을 기반으로 팝업스토어를 추천해주기 위해 Keras를 사용하여 협업 필터링 모델을 구현하였습니다.
+
+![image](https://github.com/kim-edwin/repopoppin-frontend/assets/113911630/27d57352-56aa-4645-a682-81f7d5efa0a6)
 :arrow_right: 모델 설계서 [확인하기](https://repeated-sidewalk-fe0.notion.site/a65bc33b48dc488aac44eabf462dbadb)
-![모델설계서](https://github.com/limmyou/poppin/assets/145823967/9e03d52a-9654-4073-8119-547078a114c1)
 
-</details>
 
-  ### UI
-<details><summary>UI</summary><br>
+<br/>
+<br/>
 
-:arrow_right: 화면 설계서 [확인하기](https://repeated-sidewalk-fe0.notion.site/5669337e534e4bf3992bddacb22ae52e)
-![팝핀 UI1](https://github.com/limmyou/poppin/assets/145823967/0d4d81dc-6c6c-4d3d-a4bd-890a1db157a5)
-![팝핀 UI2](https://github.com/limmyou/poppin/assets/145823967/427b6756-8f5f-4b4c-b821-75d944179a09)
+### UI
 
-</details>
+> 초기에는 pc 웹 기준으로 구현하였으나, 모바일 이용자가 더 많을 것 같다는 판단하에 모바일 웹 사이트로 전환하였습니다. 
 
-  ### API
-<details><summary>API</summary><br>
+> React 환경에서 적용이 우수한 Chakra UI를 사용하여 구현하였습니다.
+
+![image](https://github.com/kim-edwin/repopoppin-frontend/assets/113911630/61b6ea9c-8d24-4804-9a44-ee8afc03ff4a)
+:arrow_right: 화면 정의서 [확인하기](https://repeated-sidewalk-fe0.notion.site/5669337e534e4bf3992bddacb22ae52e)
+
+
+<br/>
+<br/>
+
+### API
+
+> Django Rest Framework의 APIView 라이브러리를 활용하여 API 서버를 구축하였고 Render 서비스를 이용해 배포하였습니다. 
+
+![image](https://github.com/kim-edwin/repopoppin-frontend/assets/113911630/9e8d66c8-5db1-4ff3-bf35-c60e0134c1dd)
 
 :arrow_right: API 정의서 [확인하기](https://repeated-sidewalk-fe0.notion.site/API-4deebee8804c43caa68b1657e631126e)
-![API정의서](https://github.com/limmyou/poppin/assets/145823967/3247f7e8-37ff-4a97-b76b-721ec34028f7)
 
-</details>
+<br/>
+<br/>
 
-## 4. 회고
- ### 한계점
-<details><summary>한계점</summary><br>
+## 5. 발표자료
 
-:crown:김현우 : 
+![image](https://github.com/kim-edwin/repopoppin-frontend/assets/113911630/065eb010-d792-4ddc-a808-867957677cf6)
 
-:smiley_cat:강희림 : 
+[팀 팝핀_발표자료_최종.pdf](https://github.com/kim-edwin/repopoppin-frontend/files/14731324/_._.pdf)
 
-:hatching_chick:장경민 : 
+<br/>
+<br/>
 
-:rabbit:이윤아 : 
+## 6. 발표영상
 
-:pizza:최민환 : 
+### 발표영상
+[![Video Label](http://img.youtube.com/vi/9O1aDqaiPWU/0.jpg)](https://youtu.be/9O1aDqaiPWU)
 
-</details>
-
- ### 느낀점
-<details><summary>느낀점</summary><br>
-
-:crown:김현우 : 
-
-:smiley_cat:강희림 : 
-
-:hatching_chick:장경민 : 
-
-:rabbit:이윤아 : 
-
-:pizza:최민환 : 
-
-</details>
+### 피드백영상
+[![Video Label](http://img.youtube.com/vi/D_p8ycRy0HM/0.jpg)](https://youtu.be/D_p8ycRy0HM)
