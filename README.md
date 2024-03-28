@@ -193,6 +193,9 @@ API --> W(Web Client)
 
 ## 6. 발표영상
 
+### 시연영상
+[![Video Label](http://img.youtube.com/vi/jiAuDUvZDEI/0.jpg)](https://youtu.be/jiAuDUvZDEI)
+
 ### 발표영상
 [![Video Label](http://img.youtube.com/vi/9O1aDqaiPWU/0.jpg)](https://youtu.be/9O1aDqaiPWU)
 
